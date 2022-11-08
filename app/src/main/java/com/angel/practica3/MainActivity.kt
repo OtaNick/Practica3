@@ -33,16 +33,9 @@ class MainActivity : AppCompatActivity() {
             binding.etPassword.setText(contrasenyaSP)
         }
 
-
-
-
-
         var noticias = Intent(this, NoticiasActivity::class.java)
 
         loadImageLogin()
-
-
-
 
         binding.btLogin.setOnClickListener() {
             var usuario = binding.etUsername.text.toString()
@@ -52,9 +45,6 @@ class MainActivity : AppCompatActivity() {
                 preferences.edit().putString("usuario",usuario).commit()
                 preferences.edit().putString("contraseña",contraseña).commit()
             }
-
-
-            //noticias.putExtra("usuario", bonaire.id)
             startActivity(noticias)
         }
 

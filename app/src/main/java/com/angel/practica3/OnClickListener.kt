@@ -1,5 +1,5 @@
 package com.angel.practica3
 
 interface OnClickListener {
-    fun onClick(notice: Noticia)
+    fun onClick(notice: NoticiaEntity)
 }

@@ -9,7 +9,7 @@ import com.angel.practica3.databinding.ItemNoticeBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 
-class NoticiaAdapter(private val noticias: List<Noticia>,  private val listener: OnClickListener):
+class NoticiaAdapter(var noticias: MutableList<NoticiaEntity>,  private val listener: OnClickListener):
     RecyclerView.Adapter<NoticiaAdapter.ViewHolder>()
 {
     private lateinit var context: Context
@@ -19,7 +19,7 @@ class NoticiaAdapter(private val noticias: List<Noticia>,  private val listener:
         // Vinculamos la vista al adaptador
         val binding = ItemNoticeBinding.bind(view)
 
-        fun setListener(noticia: Noticia) {
+        fun setListener(noticia: NoticiaEntity) {
             binding.root.setOnClickListener {
                 listener.onClick(noticia)
             }
@@ -45,9 +45,14 @@ class NoticiaAdapter(private val noticias: List<Noticia>,  private val listener:
                 .load(noticia.imagenDePortada)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .centerCrop()
-                        .into(binding.imgPhoto)
+                .into(binding.imgPhoto)
         }
     }
 
     override fun getItemCount(): Int = noticias.size
+
+    fun setStores(noticias: MutableList<NoticiaEntity>) {
+        this.noticias = noticias
+        notifyDataSetChanged()
+    }
 }
